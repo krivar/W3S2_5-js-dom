@@ -1,18 +1,17 @@
 @media only screen and ( max-width: 400px ) {
-    background-color : black ; font-family : Georgia, serif; 
+    background-color : black ; font-family : Georgia, serif;  grid-g ;
 }
 
 #numBWrap  {display: grid ; background-color: lightgrey;
-grid: 100px / auto auto auto; }
+grid: 100px /  auto auto auto; margin: 5%; column-gap: 10%; justify-items: center; align-items: center; row-gap: 10px;}
 
 
-.num { border:  3px solid  black ; background: yellow;
-    font-size: x-large; }
-.cx {border:  3px solid  black ; background: yellow;
-    font-size: x-large;}
+.num { border:  2px solid  black ; background: yellow; border-radius: 10% ; font-size:x-large; -webkit-border-radius: 40% ; -moz-border-radius: 10% ; -ms-border-radius: 10% ; -o-border-radius: 10% ;
+}
+
 .clr{border:  3px solid  black ; background: yellow;
     font-size: x-large;}
-.del {border:  3px solid  black ; background: yellow;
+.operator {border:  3px solid  black ; background: rgb(255, 38, 0);
     font-size: x-large;}
 .dot{border:  3px solid  black ; background: yellow;
         font-size: x-large;}
