@@ -29,27 +29,27 @@ window.onclick = ev =>  {
     } 
     else if (class_is === "operator "){
         switch( id_is ) {
-            case "numPlus"  :
+         case "numPlus"  :
             console.log("Not Yet Implemented: addition") ;
             break ;
             //add
                 console.log("Not Yet Implmented: add") ; 
                 break ;
-            case "numMinus" :
+        case "numMinus" :
             console.log("Not Yet Implemented: minus") ;
             break ;
             //subtract
             console.log("Not Yet Implmented: minus") ; 
             break ;
-            case "numX" :
+        case "numX" :
             // muliply
             console.log("Not Yet Implemented: multiply") ;
             break ;
-            case "numdel" :
+        case "numdel" :
             // divide
             console.log("Not Yet Implmented: divide") ; 
             break ;
-            default:
+        default:
                 console.alert( "unknown option clicked id:" +  id_is );
         }
     }     else if (id_is === "numBWrap") {
@@ -64,7 +64,3 @@ window.onclick = ev =>  {
 
 }
 
-/*docClick.addEventListener("click", function( event) {
-    console.log("key clicked " + event.target.value );
-} 
-*/
