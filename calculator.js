@@ -3,6 +3,7 @@ const numButton = document.querySelector("#id-main");
 const panel = document.querySelector("numDisplay");
 let addValue2String = ""; //String that has the current value
 let previousValue2String ="";
+let NewValueInDisplay = 0 ;
 
 //addEventListener("click", (MEvent) => { console.log( MEvent.target.value ) } ) ;
 console.log("numButton ", numButton  );
@@ -30,10 +31,11 @@ window.onclick = ev =>  {
             case "num9" : nkey = 9  ; break ;
             default: nkey= undefined ;
         }
-            addValue2String+= nkey
+        if( NewValueInDisplay== 0) { addValue2String =""; }
+            NewValueInDisplay++ ;
+            addValue2String+= nkey;
             console.log("String", addValue2String ) ;
-            mumDisplayUpdate( addValue2String );
-     
+            mumDisplayUpdate( addValue2String );    
     } 
     else if (class_is === "operator"){
         console.log("NAvigating operators class is",class_is , "id", id_is );
@@ -51,8 +53,9 @@ window.onclick = ev =>  {
 
         
          case "numPlus"  :
-            if( previousValue2String.length > 0  && addValue2String > 0) {
-                result = evaluate( previousValue2String , addValue2String , operand );
+            if( previousValue2String.length > 0  && NewValueInDisplay > 0) {
+                console.log("Operand is ", operator);
+                result = evaluate( previousValue2String , addValue2String , operator );
                 addValue2String = result;
             }
             console.log(" Implemented: addition") ;
@@ -60,19 +63,38 @@ window.onclick = ev =>  {
             previousValue2String = addValue2String ;
             addValue2String=""
             mumDisplayUpdate( addValue2String ) ;
+            NewValueInDisplay = 0 ; 
             break ;
             //add
                 console.log("Not Yet Implmented: add") ; 
                 break ;
         case "numMinus" :
-            console.log("Not Yet Implemented: minus") ;
+            if( previousValue2String.length > 0  && NewValueInDisplay > 0) {
+                result = evaluate( previousValue2String , addValue2String , operator );
+                addValue2String = result;
+            }
+            console.log("Implemented: minus") ;
+            operator = "-" ; 
+            previousValue2String = addValue2String ;
+            addValue2String=""
+            mumDisplayUpdate( addValue2String ) ;
+            NewValueInDisplay = 0 ; 
             break ;
             //subtract
             console.log("Not Yet Implmented: minus") ; 
             break ;
         case "numX" :
             // muliply
-            console.log("Not Yet Implemented: multiply") ;
+            if( previousValue2String.length > 0  && NewValueInDisplay > 0) {
+                result = evaluate( previousValue2String , addValue2String , operator );
+                addValue2String = result;
+            }
+            console.log(" Implemented: multiply") ;
+            operator = "*" ; 
+            previousValue2String = addValue2String ;
+            addValue2String=""
+            mumDisplayUpdate( addValue2String ) ;
+            NewValueInDisplay = 0 ; 
             break ;
         case "numEq": 
             if( previousValue2String.length =0 || operator === ""){
@@ -82,12 +104,22 @@ window.onclick = ev =>  {
                 addValue2String = res ;
                 previousValue2String ="" ;
                 operator = "";
+                NewValueInDisplay = 0 ;
             }
             mumDisplayUpdate( addValue2String ); 
             break
         case "numdel" :
             // divide
-            console.log("Not Yet Implmented: divide") ; 
+            if( previousValue2String.length > 0  && NewValueInDisplay > 0) {
+                result = evaluate( previousValue2String , addValue2String , operator );
+                addValue2String = result;
+            }
+            console.log("Implemented: divide") ;
+            operator = "/" ; 
+            previousValue2String = addValue2String ;
+            addValue2String=""
+            mumDisplayUpdate( addValue2String ) ;
+            NewValueInDisplay = 0 ;  
             break ;
         default:
                 alert( "Unknown option clicked id:" +  id_is + " of class " + class_is );
@@ -107,7 +139,7 @@ window.onclick = ev =>  {
 }
 const evaluate = ( previousValue2String , addValue2String , operand ) => {
     let v3 = v2 = v1 = 0 ; 
-    console.log( "Evaluating "+addValue2String + operand + previousValue2String);
+    console.log( "Evaluating "+previousValue2String + operand +addValue2String  );
     try {
         if (isNaN( previousValue2String )) { throw "stored number not a value" ;}
         v2 = previousValue2String * 1;
