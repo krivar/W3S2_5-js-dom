@@ -74,6 +74,17 @@ window.onclick = ev =>  {
             // muliply
             console.log("Not Yet Implemented: multiply") ;
             break ;
+        case "numEq": 
+            if( previousValue2String.length =0 || operator === ""){
+                break;
+            } else { 
+                let res = evaluate ( previousValue2String , addValue2String , operator );
+                addValue2String = res ;
+                previousValue2String ="" ;
+                operator = "";
+            }
+            mumDisplayUpdate( addValue2String ); 
+            break
         case "numdel" :
             // divide
             console.log("Not Yet Implmented: divide") ; 
@@ -96,6 +107,7 @@ window.onclick = ev =>  {
 }
 const evaluate = ( previousValue2String , addValue2String , operand ) => {
     let v3 = v2 = v1 = 0 ; 
+    console.log( "Evaluating "+addValue2String + operand + previousValue2String);
     try {
         if (isNaN( previousValue2String )) { throw "stored number not a value" ;}
         v2 = previousValue2String * 1;
@@ -106,11 +118,15 @@ const evaluate = ( previousValue2String , addValue2String , operand ) => {
         } 
     }
     catch(err) {
+        alert("!?! " , err);
             message.innerHTML = "Input is " + err;
+    }
 
         switch (operand) {
-            case "+":
+            case "+": 
+            console.log(v2 , " + ",  v1 );
                 v3= v2 +  v1 ;
+                console.log(v3  );
                 break ;
             case "+":
                 v3= v2 +  v1 ;
@@ -127,7 +143,7 @@ const evaluate = ( previousValue2String , addValue2String , operand ) => {
          
         
           
-        }
+        
     return v3 ; 
 }
 const mumDisplayUpdate = ( Text) => {
